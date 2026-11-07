@@ -1,6 +1,7 @@
 pipeline {
-    agent any
-
+    agent {
+    label 'ubuntu-wsl-agent'
+}
     tools {
         jdk 'JDK17'
     }
