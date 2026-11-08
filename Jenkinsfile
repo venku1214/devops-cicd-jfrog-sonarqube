@@ -21,5 +21,20 @@ pipeline {
                 sh './mvnw clean package'
             }
         }
+       stage('SonarQube Analysis') {
+            steps {
+                 withCredentials([string(
+                 credentialsId: 'sonarqube-token',
+                 variable: 'SONAR_TOKEN'
+        )]) {
+            sh '''
+                ./mvnw sonar:sonar \
+                  -Dsonar.projectKey=devops-cicd-demo \
+                  -Dsonar.host.url=http://localhost:9000 \
+                  -Dsonar.token=$SONAR_TOKEN
+            '''
+        }
+    }
+}
     }
 }
