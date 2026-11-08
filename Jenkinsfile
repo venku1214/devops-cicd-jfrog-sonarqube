@@ -28,7 +28,7 @@ pipeline {
                  variable: 'SONAR_TOKEN'
         )]) {
             sh '''
-                ./mvnw sonar:sonar \
+                ./mvnw org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
                   -Dsonar.projectKey=devops-cicd-demo \
                   -Dsonar.host.url=http://localhost:9000 \
                   -Dsonar.token=$SONAR_TOKEN
